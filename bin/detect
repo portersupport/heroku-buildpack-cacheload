@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -f $1/.buildcache ]; then
+if [ -f ./.buildcache ]; then
   echo "Cache - load"
   exit 0
 else
