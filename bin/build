@@ -14,6 +14,9 @@ HOME_FOLDER_REPLACEMENT="__CACHE_HOME__"
 
 echo "=====> Restoring files from cache"
 
+ls -a
+ls -a $CACHE_DIR
+
 for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   echo -n "${FILENAME}" | indent
 
