@@ -50,3 +50,6 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
   echo " ✓"
 done
+
+cd $CACHE_DIR
+echo "hello" > test.txt
