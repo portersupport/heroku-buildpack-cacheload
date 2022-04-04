@@ -8,10 +8,9 @@ indent() {
 }
 
 
-BUILD_DIR=$1
-CACHE_DIR=$2
+BUILD_DIR="."
+CACHE_DIR=$1
 HOME_FOLDER_REPLACEMENT="__CACHE_HOME__"
-
 
 echo "=====> Restoring files from cache"
 
