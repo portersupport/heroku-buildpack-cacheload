@@ -18,6 +18,10 @@ echo -e 'cache = true\nlaunch = true\nbuild = true' > "$CACHE_DIR/bundler.toml"
 
 echo "=====> Restoring files from cache"
 
+echo "reading from layers dir /layers"
+
+ls -a "/layers"
+
 echo "reading from bundler dir $bundlerlayer"
 
 ls -a $bundlerlayer
