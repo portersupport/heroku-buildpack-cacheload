@@ -12,20 +12,19 @@ BUILD_DIR="."
 CACHE_DIR=$1
 HOME_FOLDER_REPLACEMENT="__CACHE_HOME__"
 
+bundlerlayer="$CACHE_DIR/bundler"
+mkdir -p "$bundlerlayer"
+echo -e '[types]\ncache = true\nlaunch = true' > "$CACHE_DIR/bundler.toml"
+
 echo "=====> Restoring files from cache"
 
 echo "reading from cache dir $CACHE_DIR"
 
-ls -a
 ls -a $CACHE_DIR
 
-echo "reading from layers dir"
+echo "reading from bundler dir $bundlerlayer"
 
-ls -a "/layers"
-
-echo "reading from layers dir children"
-
-ls -a "/layers/*"
+ls -a $bundlerlayer
 
 for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   echo -n "${FILENAME}" | indent
@@ -59,5 +58,4 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   echo " ✓"
 done
 
-cd $CACHE_DIR
-echo "hello" > test.txt
+echo "hello" > $bundlerlayer/test.txt
