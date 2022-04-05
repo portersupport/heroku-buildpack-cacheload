@@ -19,6 +19,14 @@ echo "reading from cache dir $CACHE_DIR"
 ls -a
 ls -a $CACHE_DIR
 
+echo "reading from layers dir"
+
+ls -a "/layers"
+
+echo "reading from layers dir children"
+
+ls -a "/layers/*"
+
 for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   echo -n "${FILENAME}" | indent
 
