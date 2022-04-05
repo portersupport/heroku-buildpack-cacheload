@@ -7,14 +7,9 @@ indent() {
   sed -u 's/^/       /'
 }
 
-
 BUILD_DIR="."
-CACHE_DIR=$1
+CACHE_DIR="/layers/ballertv_heroku-buildpack-cachesave"
 HOME_FOLDER_REPLACEMENT="__CACHE_HOME__"
-
-bundlerlayer="$CACHE_DIR/bundler"
-mkdir -p "$bundlerlayer"
-echo -e 'cache = true\nlaunch = true\nbuild = true' > "$CACHE_DIR/bundler.toml"
 
 echo "=====> Restoring files from cache"
 
@@ -22,9 +17,14 @@ echo "reading from layers dir /layers"
 
 ls -a "/layers"
 
-echo "reading from bundler dir $bundlerlayer"
+if [ ! -d "$CACHE_DIR" ]; then
+  echo "cache directory does not exist"
+  exit 0
+fi
 
-ls -a $bundlerlayer
+echo "reading from cache dir $CACHE_DIR"
+
+ls -a $CACHE_DIR
 
 for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   echo -n "${FILENAME}" | indent
@@ -57,9 +57,3 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
   echo " ✓"
 done
-
-echo "hello" > $bundlerlayer/test.txt
-
-echo "reading again from bundler dir $bundlerlayer"
-
-ls -a $bundlerlayer
