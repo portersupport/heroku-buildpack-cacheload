@@ -14,7 +14,7 @@ HOME_FOLDER_REPLACEMENT="__CACHE_HOME__"
 
 bundlerlayer="$CACHE_DIR/bundler"
 mkdir -p "$bundlerlayer"
-echo -e 'cache = true\nlaunch = true' > "$CACHE_DIR/bundler.toml"
+echo -e 'cache = true\nlaunch = true\nbuild = true' > "$CACHE_DIR/bundler.toml"
 
 echo "=====> Restoring files from cache"
 
