@@ -14,13 +14,9 @@ HOME_FOLDER_REPLACEMENT="__CACHE_HOME__"
 
 bundlerlayer="$CACHE_DIR/bundler"
 mkdir -p "$bundlerlayer"
-echo -e '[types]\ncache = true\nlaunch = true' > "$CACHE_DIR/bundler.toml"
+echo -e 'cache = true\nlaunch = true' > "$CACHE_DIR/bundler.toml"
 
 echo "=====> Restoring files from cache"
-
-echo "reading from cache dir $CACHE_DIR"
-
-ls -a $CACHE_DIR
 
 echo "reading from bundler dir $bundlerlayer"
 
@@ -59,3 +55,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 done
 
 echo "hello" > $bundlerlayer/test.txt
+
+echo "reading again from bundler dir $bundlerlayer"
+
+ls -a $bundlerlayer
